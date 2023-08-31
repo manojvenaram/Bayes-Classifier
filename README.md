@@ -22,10 +22,56 @@ Output:
 7. Evaluate the classifier's accuracy using the accuracy_score function from scikit-learn.
 
 ## Program:
-''' Type your code here'''
+## Import the necessary libaries
+```
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_iris
+from sklearn.naive_bayes import GaussianNB
+import numpy as np
+import pandas as pd
+```
+## Create the class BayesClassfier
+```
+class BayesClassifier:
+  def __init__(self) -> None:
+    self.clf=GaussianNB()
+  def fit(self,X,y):
+    self.clf.fit(X,y)
+  def predict(self,X):
+    return self.clf.predict(X)
+```
+## Import the dataset
+```
+data=pd.read_csv("IRIS.csv")
+x=data.iloc[:,:-1]
+y=data.iloc[:,-1]
+```
+## Split the data set 
+```
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=.33,random_state=38)
+```
+## Fit the Training data set
+```
+clf=BayesClassifier()
+clf.fit(xtrain,ytrain)
+```
+## Predict with test data
+```
+ypred=clf.predict(xtest)
+ypred
+```
+## Accuracy Score
+```
+accuracyscore=accuracy_score(ytest,ypred)
+accuracyscore
+```
 
 ## Output:
-''' Output screen shots here
+## Dataset
+![](1.png)
+## Accuracy Score
+![](2.png)
 ## Result:
 Hence, Bayes classifier for iris dataset is implemented successfully
 
